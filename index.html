@@ -238,6 +238,7 @@
       inset 0 4px 20px rgba(255,220,235,0.4);
     outline: none;
     -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
     transition: transform 0.08s;
     position: relative;
   }
@@ -335,6 +336,7 @@
     color: inherit;
     width: 100%;
     outline: none;
+    touch-action: manipulation;
     transition: background var(--anim-duration), border-color var(--anim-duration), transform 0.15s ease;
     position: relative;
     overflow: hidden;
@@ -545,12 +547,99 @@
   }
 
   @media (max-width: 640px) {
-    .top { flex-direction: column; align-items: center; gap: 12px; }
-    .right-col { width: 100%; max-width: 100%; }
-    main { padding: 14px; }
-    .cookie-btn { width: 160px; height: 160px; }
+    body { align-items: stretch; }
+    main {
+      padding: 8px 10px 6px;
+      height: 100dvh;
+    }
+    .top {
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding-top: 4px;
+      flex: 1;
+      min-height: 0;
+    }
+    .left-col {
+      flex: 0 1 auto;
+    }
+    .right-col {
+      width: 100%;
+      max-width: 100%;
+      flex: 1;
+      min-height: 0;
+    }
+    .count { font-size: 30px; }
+    .cps { font-size: 12px; margin-top: 1px; }
+    .cookie-btn {
+      width: 130px;
+      height: 130px;
+      border-width: 4px;
+    }
+    .cookie-wrap { margin: 2px 0; }
+    .upgrades {
+      gap: 3px;
+      margin-top: 2px;
+    }
+    .upgrade {
+      padding: 5px 8px;
+      border-radius: 8px;
+    }
+    .upgrade .name { font-size: 12px; }
+    .upgrade .desc { font-size: 10px; }
+    .upgrade .cost { font-size: 12px; }
+    .upgrade .qty { font-size: 10px; }
+    .bottom-bar { gap: 5px; margin-top: 4px; }
+    .bottom-bar button {
+      padding: 6px 8px;
+      font-size: 11px;
+      border-radius: 8px;
+    }
+    .warning {
+      font-size: 9px;
+      margin-top: 4px;
+    }
+    .floating-num { font-size: 16px; }
+    .bg-slide { filter: none !important; }
+    .progress-bar-wrap { margin-top: 2px; }
+  }
+
+  @media (max-width: 380px) {
+    .cookie-btn {
+      width: 100px;
+      height: 100px;
+      border-width: 3px;
+    }
+    .count { font-size: 24px; }
+    .right-col section { font-size: 10px !important; }
+  }
+
+  @media (min-height: 800px) and (max-width: 640px) {
+    .cookie-btn {
+      width: 160px;
+      height: 160px;
+    }
     .count { font-size: 36px; }
-    .floating-num { font-size: 18px; }
+  }
+
+  @media (orientation: landscape) and (max-height: 500px) {
+    .top {
+      flex-direction: row;
+      gap: 8px;
+      padding-top: 2px;
+    }
+    .left-col { flex: 0 0 auto; }
+    .right-col { flex: 1; max-width: 50%; }
+    .cookie-btn {
+      width: 90px;
+      height: 90px;
+      border-width: 3px;
+    }
+    .count { font-size: 22px; }
+    .cps { font-size: 10px; }
+    .upgrade { padding: 3px 6px; }
+    .upgrade .name { font-size: 11px; }
+    .upgrade .desc { font-size: 9px; }
   }
 </style>
 </head>
