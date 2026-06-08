@@ -33,6 +33,25 @@ si tu pc esta en modo oscuro, la pagina tambien se pone oscura. si quieres forza
 
 hay 9 audios wa (1).ogg hasta wa (9).ogg que suenan cuando le das clic a la rata. si no cargan, el navegador hace un *beep* trisitito con el AudioContext. tambien hay un pum.mp3 para cuando compras autodestrucción y todo explota. si no carga, hace un *bzzzz* feo.
 
+### controls de audio (nuevo, perro)
+
+abajo a la izquierda, al lado del boton de tema, hay dos cositas nuevas:
+
+- **slider de volumen**: una barrita para subir o bajar el volumen. va de 0 a 100. si lo pones en 0 no se escucha nada, ideal para jugar en la oficina o en la iglesia. se guarda solo, no tienes que configurarlo cada vez.
+
+- **boton wa/pitidos**: dice "wa" o "pitidos". si estas aburrido de escuchar wa todo el dia (mentira, nunca te aburres de wa), le das clic y cambia a pitidos. los pitidos son sonidos generados por el navegador, mas suavecitos, mas tranquilos, mas *respetuosos con tus oidos y los de tu madre*. perfecto para:
+  - jugar de noche mientras tu familia duerme
+  - no despertar al perro
+  - tener AUTOCLICKER activado sin querer volverte sordo
+  - para que tu cabeza no termine sonando como un wa repetido 800 veces
+  - cuando estas en llamada de discord y no quieren escuchar wa wa wa wa wa wa wa wa wa wa wa
+
+ambos se guardan en localStorage, asi que si recargas la pagina, la rata recuerda como le gusta sonar.
+
+### seguridad auditiva
+
+si activas pitidos + volumen bajo, te olvidas del warning de NO USAR AUTOCLICKER. bueno, el warning sigue ahi pero ya no importa. puedes autoclickear tranquilo. la rata te perdona.
+
 ## las imagenes
 
 hay muchas fotos de antonineko21 (una rata, si) en la carpeta img/. el fondo las va rotando cada 5 segundos. cuando le das clic a la rata, cambia a anto_push.png y cuando sueltas vuelve a anto_quieto.png. porque la rata se estira cuando la tocas.
@@ -40,6 +59,8 @@ hay muchas fotos de antonineko21 (una rata, si) en la carpeta img/. el fondo las
 ## NO USAR AUTOCLICKER
 
 literalmente dice la pagina: NO USAR AUTOCLICKER PARA SEGURIDAD AUDITIVA. si usas autoclicker, los wa van a sonar 1000 veces por segundo y tus oidos van a sangrar. la rata te lo advirtio.
+
+**pero ahora puedes cambiar a modo pitidos o bajar el volumen** (lee la seccion de sonidos mas abajo). si haces eso, la rata te deja usar autoclicker. pero no le digas a nadie que te dije esto.
 
 ## como se juega profesionalmente
 
