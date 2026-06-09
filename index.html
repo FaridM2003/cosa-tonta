@@ -369,6 +369,30 @@
     display: inline-block;
   }
 
+  .upgrade-wrap {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .upgrade-wrap .upgrade { flex: 1; }
+  .mg-replay {
+    flex-shrink: 0;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--qty-bg);
+    color: var(--text-dim);
+    font-size: 16px;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    display: none;
+    border: 1px solid var(--border);
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    user-select: none;
+  }
+  .mg-replay:hover { background: var(--gold); color: #fff; border-color: var(--gold); transform: scale(1.1); }
+
   .upgrade.bought {
     animation: upgradeBought 0.5s ease;
   }
@@ -706,6 +730,152 @@
     border-color: var(--gold);
   }
 
+  .mg-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  .mg-overlay.show { display: flex; }
+  .mg-box {
+    background: var(--surface);
+    border: 2px solid var(--gold);
+    border-radius: 18px;
+    padding: 28px 24px 20px;
+    max-width: 360px;
+    width: 92%;
+    text-align: center;
+    animation: pumPop 0.35s ease-out;
+  }
+  .mg-box h3 { color: var(--gold); font-size: 22px; margin-bottom: 4px; }
+  .mg-box .mg-desc { color: var(--text-dim); font-size: 13px; margin-bottom: 14px; }
+  .mg-box .mg-timer { font-size: 28px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+  .mg-box .mg-progress-text { font-size: 14px; color: var(--text-dim); margin-bottom: 10px; }
+  .mg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin: 10px auto;
+    max-width: 240px;
+  }
+  .mg-cell {
+    aspect-ratio: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .mg-cell:hover { background: var(--card-hover); }
+  .mg-cell:active { transform: scale(0.95); }
+  .mg-cells-row {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin: 10px 0;
+  }
+  .mg-cells-row .mg-cell { width: 80px; height: 80px; }
+  .mg-btn {
+    display: inline-block;
+    padding: 10px 28px;
+    border-radius: 10px;
+    border: none;
+    background: var(--gold);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+    outline: none;
+  }
+  .mg-btn:hover { background: var(--gold-hover); }
+  .mg-btn:active { transform: scale(0.96); }
+  .mg-progress {
+    height: 8px;
+    background: var(--border);
+    border-radius: 4px;
+    margin: 10px 0 6px;
+    overflow: hidden;
+  }
+  .mg-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--accent));
+    border-radius: 4px;
+    width: 0%;
+    transition: width 0.2s;
+  }
+  .mg-reward {
+    color: var(--gold);
+    font-size: 24px;
+    font-weight: 700;
+    margin: 12px 0;
+    animation: countPulse 0.5s ease infinite;
+  }
+  .mg-fail { color: var(--reset-text); font-size: 16px; font-weight: 600; margin: 12px 0; }
+  .mg-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 10px auto;
+    max-width: 220px;
+  }
+  .mg-card {
+    aspect-ratio: 1;
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+    cursor: pointer;
+    transition: transform 0.15s, border-color 0.15s;
+    user-select: none;
+  }
+  .mg-card:hover { border-color: var(--gold); transform: scale(1.06); }
+  .mg-card.correct { border-color: #6c6; background: rgba(100,200,100,0.15); }
+  .mg-card.wrong { border-color: #c66; background: rgba(200,100,100,0.15); }
+  .mg-card.disabled { pointer-events: none; opacity: 0.6; }
+  .mg-choices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin: 10px 0;
+  }
+  .mg-choice {
+    padding: 12px 8px;
+    background: var(--card);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--text);
+    transition: background 0.15s, border-color 0.15s;
+    outline: none;
+  }
+  .mg-choice:hover { border-color: var(--gold); }
+  .mg-choice.correct { background: rgba(100,200,100,0.2); border-color: #6c6; }
+  .mg-choice.wrong { background: rgba(200,100,100,0.2); border-color: #c66; }
+  .mg-choice:disabled { pointer-events: none; }
+  .mg-problem {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 12px 0;
+    color: var(--text);
+  }
+
   @media (max-width: 640px) {
     .audio-controls .vol-slider { width: 40px; }
     .audio-controls .sound-mode-btn { font-size: 9px; padding: 3px 6px; }
@@ -759,6 +929,10 @@
     <h2>BOOM!</h2>
     <p>Has detonado el núcleo. Presiona Reiniciar.</p>
   </div>
+
+  <div class="mg-overlay" id="mgOverlay">
+    <div class="mg-box" id="mgBox"></div>
+  </div>
 </main>
 
 <script>
@@ -783,12 +957,15 @@
 
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
   let audioPool = [];
+  let audioIdx = 0;
   let ratitas = 0;
   let clickPower = 1;
   let cps = 0;
   let owned = {};
   let costs = {};
   let gameOver = false;
+  let minigameActive = false;
+  let minigamesBeaten = {};
   let lastTime = Date.now();
   let soundVolume = 0.3;
   let soundMode = 'wa';
@@ -823,10 +1000,11 @@
       return;
     }
     if (soundVolume <= 0) return;
-    const idx = Math.floor(Math.random() * audioPool.length);
-    const clone = audioPool[idx].cloneNode();
-    clone.volume = soundVolume;
-    clone.play().catch(() => {});
+    const src = audioPool[audioIdx % audioPool.length];
+    audioIdx++;
+    src.currentTime = 0;
+    src.volume = soundVolume;
+    src.play().catch(() => {});
   }
 
   function playBuySound() {
@@ -960,19 +1138,6 @@
     el.classList.add('pulse');
   }
 
-  function animateUpgrade(id) {
-    const btns = document.querySelectorAll('.upgrade');
-    for (const btn of btns) {
-      const nameEl = btn.querySelector('.name');
-      if (nameEl && nameEl.textContent.trim() === CONFIG.upgrades.find(u => u.id === id)?.name) {
-        btn.classList.remove('bought');
-        void btn.offsetWidth;
-        btn.classList.add('bought');
-        break;
-      }
-    }
-  }
-
   function triggerGameOver() {
     gameOver = true;
     document.getElementById('cookie').style.opacity = '0.3';
@@ -991,13 +1156,13 @@
     if (slides.length > 0) {
       slides.forEach(s => s.classList.add('strobe'));
       let idx = 0;
-      const strobe = setInterval(() => {
+      triggerGameOver._strobe = setInterval(() => {
         slides.forEach(s => s.classList.remove('active'));
         slides[idx % slides.length].classList.add('active');
         idx++;
       }, 80);
-      setTimeout(() => {
-        clearInterval(strobe);
+      triggerGameOver._cleanup = setTimeout(() => {
+        clearInterval(triggerGameOver._strobe);
         slides.forEach(s => s.classList.remove('strobe'));
         mainEl.classList.remove('shake');
         cookie.classList.remove('strobe');
@@ -1006,14 +1171,21 @@
         slides[0].classList.add('active');
       }, 5000);
     }
-    setTimeout(resetGame, 6200);
+    triggerGameOver._reset = setTimeout(resetGame, 6200);
   }
 
   function resetGame() {
+    if (triggerGameOver._strobe) clearInterval(triggerGameOver._strobe);
+    if (triggerGameOver._cleanup) clearTimeout(triggerGameOver._cleanup);
+    if (triggerGameOver._reset) clearTimeout(triggerGameOver._reset);
+    triggerGameOver._strobe = triggerGameOver._cleanup = triggerGameOver._reset = null;
     ratitas = 0;
     clickPower = 1;
     cps = 0;
     gameOver = false;
+    minigameActive = false;
+    minigamesBeaten = {};
+    document.getElementById('mgOverlay').classList.remove('show');
     for (const u of CONFIG.upgrades) { owned[u.id] = 0; costs[u.id] = u.baseCost; }
     document.getElementById('cookie').style.opacity = '';
     document.getElementById('cookie').style.pointerEvents = '';
@@ -1027,7 +1199,8 @@
   }
 
   function cookieClick(e) {
-    if (gameOver) return;
+    if (gameOver || minigameActive) return;
+    if (e && e.button !== 0 && e.button !== undefined) return;
     playSound();
     ratitas += clickPower;
     const btn = document.getElementById('cookie');
@@ -1047,6 +1220,7 @@
   function buy(id) {
     const u = CONFIG.upgrades.find(x => x.id === id);
     if (ratitas < costs[id]) return;
+    if (gameOver || minigameActive) return;
     ratitas -= costs[id];
     owned[id]++;
     u.perk();
@@ -1055,6 +1229,10 @@
     animateUpgrade(id);
     animateCount();
     render();
+
+    if (owned[id] === 1 && id !== 'doom' && MINIGAMES[id]) {
+      launchMinigame(id);
+    }
   }
 
   function updateProgressBar() {
@@ -1070,6 +1248,14 @@
     bar.style.width = pct + '%';
   }
 
+  function animateUpgrade(id) {
+    const btn = document.querySelector(`.upgrade[data-id="${id}"]`);
+    if (!btn) return;
+    btn.classList.remove('bought');
+    void btn.offsetWidth;
+    btn.classList.add('bought');
+  }
+
   function render() {
     if (gameOver) {
       document.getElementById('count').textContent = '';
@@ -1078,21 +1264,44 @@
       document.getElementById('count').textContent = Math.floor(ratitas).toLocaleString();
       document.getElementById('cps-val').textContent = cps;
     }
+
     const btn = document.getElementById('cookie');
     btn.setAttribute('aria-label',
       gameOver ? 'Partida terminada. Presiona Reiniciar.' :
       `Haz clic para obtener ${clickPower} ratita${clickPower !== 1 ? 's' : ''}. Produces ${cps} por segundo.`);
 
     const container = document.getElementById('upgrades');
-    container.innerHTML = '';
     for (const u of CONFIG.upgrades) {
-      const b = document.createElement('button');
+      const b = container.querySelector(`[data-id="${u.id}"]`);
+      if (!b) continue;
       const canBuy = ratitas >= costs[u.id] && !gameOver;
-      b.className = 'upgrade';
-      if (!canBuy) b.disabled = true;
-      b.setAttribute('role', 'listitem');
+      b.disabled = !canBuy;
+      const costEl = b.querySelector('.cost');
+      if (costEl) costEl.textContent = costs[u.id].toLocaleString();
+      const qtyEl = b.querySelector('.qty');
+      if (qtyEl) qtyEl.textContent = 'x' + owned[u.id];
       b.setAttribute('aria-label',
         `${u.name}: ${u.desc}. Costo: ${costs[u.id].toLocaleString()} ratitas. Tienes ${owned[u.id]}.`);
+      const replayEl = container.querySelector(`.mg-replay[data-replay="${u.id}"]`);
+      if (replayEl) {
+        replayEl.style.display = minigamesBeaten[u.id] && u.id !== 'doom' ? 'block' : 'none';
+      }
+    }
+    updateProgressBar();
+  }
+
+  function initUpgradeButtons() {
+    const container = document.getElementById('upgrades');
+    for (const u of CONFIG.upgrades) {
+      const wrap = document.createElement('div');
+      wrap.className = 'upgrade-wrap';
+      const b = document.createElement('button');
+      b.className = 'upgrade';
+      b.dataset.id = u.id;
+      b.disabled = true;
+      b.setAttribute('role', 'listitem');
+      b.setAttribute('aria-label',
+        `${u.name}: ${u.desc}. Costo: ${costs[u.id].toLocaleString()} ratitas. Tienes 0.`);
       b.innerHTML = `
         <div class="info">
           <div class="name">${u.name}</div>
@@ -1100,12 +1309,303 @@
         </div>
         <div class="meta">
           <div class="cost">${costs[u.id].toLocaleString()}</div>
-          <div class="qty">x${owned[u.id]}</div>
+          <div class="qty">x0</div>
         </div>`;
-      b.addEventListener('click', () => buy(u.id));
-      container.appendChild(b);
+      const replay = document.createElement('span');
+      replay.className = 'mg-replay';
+      replay.dataset.replay = u.id;
+      replay.textContent = '🎮';
+      replay.title = 'Jugar minijuego';
+      wrap.appendChild(b);
+      wrap.appendChild(replay);
+      container.appendChild(wrap);
     }
-    updateProgressBar();
+    container.addEventListener('click', (e) => {
+      const replayBtn = e.target.closest('.mg-replay');
+      if (replayBtn) {
+        e.stopPropagation();
+        const id = replayBtn.dataset.replay;
+        if (id !== 'doom') launchMinigame(id, true);
+        return;
+      }
+      const upgradeBtn = e.target.closest('.upgrade');
+      if (upgradeBtn && !upgradeBtn.disabled) {
+        buy(upgradeBtn.dataset.id);
+      }
+    });
+  }
+
+  // === MINIGAMES ===
+  const MINIGAMES = {
+    cursor: {
+      title: '¡Atrapa la rata!',
+      desc: 'Toca la rata 5 veces para ganar 50 ratitas',
+      rewardDesc: '+50 ratitas',
+      reward: () => { ratitas += 50; },
+      play(resolve) {
+        let score = 0, lives = 3, timeLeft = 10, target = 0, done = false;
+        const box = document.getElementById('mgBox');
+        function renderGame() {
+          let html = `<h3>${MINIGAMES.cursor.title}</h3><p class="mg-desc">${MINIGAMES.cursor.desc}</p><div class="mg-timer">${timeLeft}s</div><div class="mg-progress-text">Aciertos: ${score}/5 · Fallos: ${lives}/3</div><div class="mg-grid">`;
+          for (let i = 0; i < 9; i++) {
+            html += `<div class="mg-cell" data-idx="${i}"${i === target ? ' style="background:var(--card) url(\'./img/anto_quieto.png\') center/cover no-repeat;"' : ''}></div>`;
+          }
+          html += '</div>';
+          box.innerHTML = html;
+        }
+        function handleClick(e) {
+          const cell = e.target.closest('.mg-cell');
+          if (!cell || done) return;
+          if (parseInt(cell.dataset.idx) === target) {
+            score++;
+            if (score >= 5) { done = true; cleanup(); resolve(true); return; }
+            target = Math.floor(Math.random() * 9);
+            renderGame();
+          } else {
+            lives--;
+            if (lives <= 0) { done = true; cleanup(); resolve(false); return; }
+          }
+        }
+        function tick() {
+          timeLeft--;
+          if (timeLeft <= 0 && !done) { done = true; cleanup(); resolve(false); return; }
+          if (!done) renderGame();
+        }
+        target = Math.floor(Math.random() * 9);
+        renderGame();
+        box.addEventListener('click', handleClick);
+        const timer = setInterval(tick, 1000);
+        function cleanup() { clearInterval(timer); box.removeEventListener('click', handleClick); }
+      }
+    },
+    granny: {
+      title: '¡Lava la pancita!',
+      desc: 'Haz clic 20 veces para limpiar la pancita y ganar +2 ratitas/s',
+      rewardDesc: '+2 ratitas/s',
+      reward: () => { cps += 2; },
+      play(resolve) {
+        let clicks = 0, timeLeft = 5, done = false;
+        const box = document.getElementById('mgBox');
+        function renderGame() {
+          let html = `<h3>${MINIGAMES.granny.title}</h3><p class="mg-desc">${MINIGAMES.granny.desc}</p><div class="mg-timer">${timeLeft}s</div><div class="mg-progress-text">Clics: ${clicks}/20</div><div class="mg-progress"><div class="mg-progress-fill" style="width:${Math.min(100, (clicks/20)*100)}%"></div></div><button class="mg-btn" id="mgActionBtn"><img src="./img/anto_quieto.png" style="width:22px;height:22px;vertical-align:middle;border-radius:50%;object-fit:cover;margin-right:4px;">¡Lavar!</button>`;
+          box.innerHTML = html;
+        }
+        function handleClick(e) {
+          if (done) return;
+          if (e.target.id === 'mgActionBtn' || e.target.closest('#mgActionBtn')) {
+            clicks++;
+            if (clicks >= 20) { done = true; cleanup(); resolve(true); return; }
+            renderGame();
+          }
+        }
+        function tick() {
+          timeLeft--;
+          if (timeLeft <= 0 && !done) { done = true; cleanup(); resolve(false); return; }
+          if (!done) renderGame();
+        }
+        renderGame();
+        box.addEventListener('click', handleClick);
+        const timer = setInterval(tick, 1000);
+        function cleanup() { clearInterval(timer); box.removeEventListener('click', handleClick); }
+      }
+    },
+    farm: {
+      title: '¡Miaus!',
+      desc: 'Toca el gato 8 veces para ganar 100 ratitas',
+      rewardDesc: '+100 ratitas',
+      reward: () => { ratitas += 100; },
+      play(resolve) {
+        let score = 0, timeLeft = 10, pos = 0, done = false;
+        const box = document.getElementById('mgBox');
+        function renderGame() {
+          let html = `<h3>${MINIGAMES.farm.title}</h3><p class="mg-desc">${MINIGAMES.farm.desc}</p><div class="mg-timer">${timeLeft}s</div><div class="mg-progress-text">Atrapados: ${score}/8</div><div class="mg-cells-row">`;
+          for (let i = 0; i < 3; i++) {
+            html += `<div class="mg-cell" data-pos="${i}"${i === pos ? ' style="background:var(--card) url(\'./img/anto_quieto.png\') center/cover no-repeat;"' : ''}></div>`;
+          }
+          html += '</div>';
+          box.innerHTML = html;
+        }
+        function handleClick(e) {
+          const cell = e.target.closest('.mg-cell');
+          if (!cell || done) return;
+          if (parseInt(cell.dataset.pos) === pos) {
+            score++;
+            if (score >= 8) { done = true; cleanup(); resolve(true); return; }
+            pos = Math.floor(Math.random() * 3);
+            renderGame();
+          }
+        }
+        function tick() {
+          timeLeft--;
+          if (timeLeft <= 0 && !done) { done = true; cleanup(); resolve(false); return; }
+          if (done) return;
+          pos = Math.floor(Math.random() * 3);
+          renderGame();
+        }
+        renderGame();
+        box.addEventListener('click', handleClick);
+        const timer = setInterval(tick, 1000);
+        function cleanup() { clearInterval(timer); box.removeEventListener('click', handleClick); }
+      }
+    },
+    factory: {
+      title: '¡Suma rápida!',
+      desc: 'Responde 5 sumas (necesitas 3 correctas) para ganar 200 ratitas',
+      rewardDesc: '+200 ratitas',
+      reward: () => { ratitas += 200; },
+      play(resolve) {
+        let idx = 0, correct = 0, timeLeft = 12, answered = false, done = false;
+        const questions = [];
+        for (let i = 0; i < 5; i++) {
+          const a = Math.floor(Math.random() * 10) + 1;
+          const b = Math.floor(Math.random() * 10) + 1;
+          const ans = a + b;
+          const choices = [ans];
+          while (choices.length < 4) {
+            const w = ans + Math.floor(Math.random() * 12) - 6;
+            if (!choices.includes(w) && w >= 0) choices.push(w);
+          }
+          for (let j = choices.length - 1; j > 0; j--) {
+            const k = Math.floor(Math.random() * (j + 1));
+            [choices[j], choices[k]] = [choices[k], choices[j]];
+          }
+          questions.push({ a, b, ans, choices });
+        }
+        const box = document.getElementById('mgBox');
+        function renderGame() {
+          if (idx >= 5) { done = true; cleanup(); resolve(correct >= 3); return; }
+          const q = questions[idx];
+          let html = `<h3>${MINIGAMES.factory.title}</h3><p class="mg-desc">${MINIGAMES.factory.desc}</p><div class="mg-timer">${timeLeft}s</div><div class="mg-progress-text">Correctas: ${correct}/3 · Pregunta ${idx+1}/5</div><div class="mg-problem">${q.a} + ${q.b} = ?</div><div class="mg-choices">`;
+          for (const c of q.choices) {
+            html += `<button class="mg-choice" data-answer="${c}">${c}</button>`;
+          }
+          html += '</div>';
+          box.innerHTML = html;
+        }
+        function handleClick(e) {
+          const btn = e.target.closest('.mg-choice');
+          if (!btn || answered || done) return;
+          answered = true;
+          const q = questions[idx];
+          if (parseInt(btn.dataset.answer) === q.ans) {
+            btn.classList.add('correct');
+            correct++;
+          } else {
+            btn.classList.add('wrong');
+            q.choices.forEach(c => {
+              if (c === q.ans) box.querySelector(`[data-answer="${c}"]`).classList.add('correct');
+            });
+          }
+          setTimeout(() => {
+            if (done) return;
+            answered = false;
+            idx++;
+            if (idx >= 5) { done = true; cleanup(); resolve(correct >= 3); } else renderGame();
+          }, 600);
+        }
+        function tick() {
+          timeLeft--;
+          if (timeLeft <= 0 && !done) { done = true; cleanup(); resolve(correct >= 3); return; }
+          if (!answered && !done) renderGame();
+        }
+        renderGame();
+        box.addEventListener('click', handleClick);
+        const timer = setInterval(tick, 1000);
+        function cleanup() { clearInterval(timer); box.removeEventListener('click', handleClick); }
+      }
+    },
+    mine: {
+      title: 'Busca el tesoro',
+      desc: 'Encuentra a Anto 3 veces en 6 intentos para ganar 300 ratitas',
+      rewardDesc: '+300 ratitas',
+      reward: () => { ratitas += 300; },
+      play(resolve) {
+        let round = 0, found = 0, maxAttempts = 6, treasure = 0, locked = false, done = false;
+        const box = document.getElementById('mgBox');
+        function renderGame() {
+          let html = `<h3>${MINIGAMES.mine.title}</h3><p class="mg-desc">${MINIGAMES.mine.desc}</p><div class="mg-progress-text">Intento ${round+1}/${maxAttempts} · Encontrados: ${found}/3</div><div class="mg-cards">`;
+          for (let i = 0; i < 4; i++) {
+            html += `<div class="mg-card" data-card="${i}">?</div>`;
+          }
+          html += '</div>';
+          box.innerHTML = html;
+        }
+        function handleClick(e) {
+          const card = e.target.closest('.mg-card');
+          if (!card || locked || done) return;
+          locked = true;
+          const idx2 = parseInt(card.dataset.card);
+          card.textContent = '';
+          if (idx2 === treasure) {
+            card.style.backgroundImage = "url('./img/anto_push.png')";
+            card.style.backgroundSize = 'cover';
+            card.style.backgroundPosition = 'center';
+            card.classList.add('correct');
+            found++;
+            round++;
+            if (found >= 3) { done = true; cleanup(); resolve(true); return; }
+          } else {
+            card.textContent = '❌';
+            card.style.fontSize = '36px';
+            card.classList.add('wrong');
+            round++;
+          }
+          if (round >= maxAttempts) { done = true; cleanup(); resolve(false); return; }
+          setTimeout(() => {
+            if (done) return;
+            locked = false;
+            treasure = Math.floor(Math.random() * 4);
+            renderGame();
+          }, 700);
+        }
+        treasure = Math.floor(Math.random() * 4);
+        renderGame();
+        box.addEventListener('click', handleClick);
+        function cleanup() { box.removeEventListener('click', handleClick); }
+      }
+    }
+  };
+
+  function launchMinigame(id, isReplay) {
+    if (minigameActive) return;
+    minigameActive = true;
+    const overlay = document.getElementById('mgOverlay');
+    const box = document.getElementById('mgBox');
+    overlay.classList.add('show');
+    box.innerHTML = '';
+
+    const game = MINIGAMES[id];
+    if (!game) { minigameActive = false; overlay.classList.remove('show'); return; }
+
+    game.play((won) => {
+      if (won) {
+        minigamesBeaten[id] = true;
+        if (!isReplay) {
+          if (game.reward) game.reward();
+        } else {
+          ratitas += 5;
+        }
+        box.innerHTML = `
+          <h3>${game.title}</h3>
+          <p class="mg-desc">${game.desc}</p>
+          <div class="mg-reward">¡Ganaste! ${isReplay ? '+5 ratitas' : game.rewardDesc}</div>
+          <button class="mg-btn" id="mgCloseBtn">¡Genial!</button>`;
+        document.getElementById('mgCloseBtn').addEventListener('click', () => {
+          minigameActive = false;
+          overlay.classList.remove('show');
+          render();
+        });
+      } else {
+        box.innerHTML = `
+          <h3>${game.title}</h3>
+          <p class="mg-desc">¡Inténtalo de nuevo!</p>
+          <div class="mg-fail">No esta vez</div>`;
+        minigameActive = false;
+        setTimeout(() => {
+          launchMinigame(id, isReplay);
+        }, 700);
+      }
+    });
   }
 
   function initAudioControls() {
@@ -1141,15 +1641,13 @@
     initCookieImage();
     initTheme();
     initAudioControls();
+    initUpgradeButtons();
     render();
     document.body.classList.add('fade-in');
     setTimeout(() => document.body.classList.remove('fade-in'), 900);
   }
 
   document.getElementById('cookie').addEventListener('click', cookieClick);
-  document.getElementById('cookie').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); cookieClick(e); }
-  });
 
   document.getElementById('reset').addEventListener('click', () => {
     if (!confirm('¿Reiniciar? Se pierde todo.')) return;

@@ -33,7 +33,7 @@ si tu pc esta en modo oscuro, la pagina tambien se pone oscura. si quieres forza
 
 hay 9 audios wa (1).ogg hasta wa (9).ogg que suenan cuando le das clic a la rata. si no cargan, el navegador hace un *beep* trisitito con el AudioContext. tambien hay un pum.mp3 para cuando compras autodestrucción y todo explota. si no carga, hace un *bzzzz* feo.
 
-### controls de audio (nuevo, perro)
+### controls de audio (nuevo)
 
 abajo a la izquierda, al lado del boton de tema, hay dos cositas nuevas:
 
@@ -51,6 +51,22 @@ ambos se guardan en localStorage, asi que si recargas la pagina, la rata recuerd
 ### seguridad auditiva
 
 si activas pitidos + volumen bajo, te olvidas del warning de NO USAR AUTOCLICKER. bueno, el warning sigue ahi pero ya no importa. puedes autoclickear tranquilo. la rata te perdona.
+
+## los minijuegos (nuevo, ahora con imagen de anto)
+
+cuando compras una mejora por PRIMERA VEZ, la rata activa un minijuego. si lo superas, recibes bonus jugosos. si fallas... la rata te perdona y lo intentas otra vez hasta que le ganes. porque la rata es perseverante y no se rinde.
+
+| mejora | minijuego | que tienes que hacer | premio |
+|--------|-----------|---------------------|--------|
+| **rata** | atrapa la rata | una cuadricula 3×3, toca la rata 5 veces sin que se te escape, tienes 3 vidas | +50 ratitas |
+| **belly washing** | lavado de pancita | dale clic al boton lavar 20 veces en 5 segundos, la pancita no se lava sola | +2 cps permanente |
+| **vendedor de miaus** | encuentra a anto | aparece anto en 1 de 3 posiciones, tocalo 8 veces | +100 ratitas |
+| **+tda points** | matematicas rapidas | 5 problemas matematicos, necesitas 3 bien, tienes 12 segundos y la calculadora guardada | +200 ratitas |
+| **acredor de dineros** | busca el tesoro | 4 cartas, encuentra a anto 3 veces en 6 intentos | +300 ratitas |
+
+### el boton de revancha (🎮)
+
+una vez le ganas a un minijuego, aparece un boton 🎮 al lado de la mejora. le das clic y juegas otra vez. si ganas te llevas +5 ratitas. no es mucho, pero es trabajo honesto. puedes jugar las veces que quieras, la rata no se cansa de ti.
 
 ## las imagenes
 
