@@ -279,6 +279,9 @@
     height: 100%;
     object-fit: cover;
     display: block;
+    pointer-events: none;
+    -webkit-user-drag: none;
+    user-select: none;
   }
 
   .cookie-btn .fallback {
@@ -773,6 +776,8 @@
     justify-content: center;
     font-size: 36px;
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     transition: background 0.15s;
   }
   .mg-cell:hover { background: var(--card-hover); }
@@ -794,6 +799,8 @@
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     font-family: inherit;
     transition: background 0.2s;
     outline: none;
@@ -839,6 +846,8 @@
     justify-content: center;
     font-size: 42px;
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     transition: transform 0.15s, border-color 0.15s;
     user-select: none;
   }
@@ -860,6 +869,8 @@
     font-size: 20px;
     font-weight: 600;
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
     font-family: inherit;
     color: var(--text);
     transition: background 0.15s, border-color 0.15s;
@@ -869,11 +880,21 @@
   .mg-choice.correct { background: rgba(100,200,100,0.2); border-color: #6c6; }
   .mg-choice.wrong { background: rgba(200,100,100,0.2); border-color: #c66; }
   .mg-choice:disabled { pointer-events: none; }
-  .mg-problem {
+    .mg-problem {
     font-size: 32px;
     font-weight: 700;
     margin: 12px 0;
     color: var(--text);
+  }
+
+  @media (pointer: coarse) {
+    .mg-box { max-width: 94%; padding: 22px 14px 16px; }
+    .mg-grid { gap: 8px; }
+    .mg-cells-row .mg-cell { width: 96px; height: 96px; }
+    .mg-choice { padding: 16px 12px; font-size: 22px; }
+    .mg-btn { padding: 14px 36px; font-size: 18px; }
+    .mg-box .mg-desc { font-size: 14px; }
+    .mg-problem { font-size: 28px; }
   }
 
   @media (max-width: 640px) {
@@ -921,7 +942,7 @@
   </div>
 
   <div class="pum-overlay" id="pumOverlay">
-    <img src="./img/pum.jpg" alt="BOOM">
+    <img src="./img/pum.jpg" alt="" draggable="false" style="pointer-events:none;user-select:none;-webkit-user-drag:none;">
   </div>
 
   <div class="game-over-overlay" id="gameOverOverlay">
@@ -1025,8 +1046,11 @@
     let img = btn.querySelector('img');
     if (!img) {
       img = document.createElement('img');
-      img.alt = 'Clicker';
+      img.alt = '';
       img.draggable = false;
+      img.style.pointerEvents = 'none';
+      img.style.userSelect = 'none';
+      img.style.webkitUserDrag = 'none';
       btn.prepend(img);
     }
     img.src = src;
@@ -1387,7 +1411,7 @@
         let clicks = 0, timeLeft = 5, done = false;
         const box = document.getElementById('mgBox');
         function renderGame() {
-          let html = `<h3>${MINIGAMES.granny.title}</h3><p class="mg-desc">${MINIGAMES.granny.desc}</p><div class="mg-timer">${timeLeft}s</div><div class="mg-progress-text">Clics: ${clicks}/20</div><div class="mg-progress"><div class="mg-progress-fill" style="width:${Math.min(100, (clicks/20)*100)}%"></div></div><button class="mg-btn" id="mgActionBtn"><img src="./img/anto_quieto.png" style="width:22px;height:22px;vertical-align:middle;border-radius:50%;object-fit:cover;margin-right:4px;">¡Lavar!</button>`;
+          let html = `<h3>${MINIGAMES.granny.title}</h3><p class="mg-desc">${MINIGAMES.granny.desc}</p><div class="mg-timer">${timeLeft}s</div><div class="mg-progress-text">Clics: ${clicks}/20</div><div class="mg-progress"><div class="mg-progress-fill" style="width:${Math.min(100, (clicks/20)*100)}%"></div></div><button class="mg-btn" id="mgActionBtn"><img src="./img/anto_quieto.png" style="width:22px;height:22px;vertical-align:middle;border-radius:50%;object-fit:cover;margin-right:4px;pointer-events:none;user-select:none;-webkit-user-drag:none;" draggable="false" alt="">¡Lavar!</button>`;
           box.innerHTML = html;
         }
         function handleClick(e) {
